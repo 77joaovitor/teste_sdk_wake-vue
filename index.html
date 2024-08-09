@@ -8,6 +8,19 @@
   </head>
   <body>
     <div id="app"></div>
+    <script src="https://static.fbits.net/storefront-sdk/0.2.0/storefront-sdk.min.js"></script>
+    <script>
+    
+       const apiCode = '%VITE_WAKE_TOKEN%';
+        const clientConfig = {
+            storefrontAccessToken: apiCode,
+            checkoutUrl: 'https://acheiseuvinho.checkout.fbits.store/',
+            storeUrl: 'https://acheiseuvinho.fbits.store/'
+        }
+        
+        window.StoreFrontClientHook = StorefrontClient.createClient(clientConfig);
+  
+    </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

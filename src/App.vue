@@ -1,17 +1,27 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+async function login() {
+      let query = `mutation customerAuthenticatedLogin($email: String!, $pass: String!) {
+        customerAuthenticatedLogin(input: {input: $email, password: $pass}) {
+          isMaster
+          token
+          legacyToken
+          type
+        }
+      }`
+      const sdkWake = window
+      try {
+        let response = await sdkWake.StoreFrontClientHook.query(query, {email: 'email', pass: 'pssword'})
+
+        console.log('response', response)
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <button @click="login()">Login</button>
 </template>
 
 <style scoped>
